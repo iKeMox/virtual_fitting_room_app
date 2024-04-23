@@ -62,19 +62,22 @@ class EditProfileScreen extends StatelessWidget {
                 hint: "Password",
               ),
               const SizedBox(height: 100,),
-              Container(
-                width: 200,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(50)
-                ),
-                  child: const Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text("Save changes", style: TextStyle(color: Colors.white), textAlign: TextAlign.center,),
-                    ],
-                  ))
+              InkWell(
+                onTap: (){},
+                child: Container(
+                  width: 200,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(50)
+                  ),
+                    child: const Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Save changes", style: TextStyle(color: Colors.white), textAlign: TextAlign.center,),
+                      ],
+                    )),
+              )
             ],
           ),
         ),
