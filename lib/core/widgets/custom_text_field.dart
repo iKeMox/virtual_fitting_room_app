@@ -57,9 +57,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    return Container(
+    return SizedBox(
       height: 60,
-      width: 320,
+      width: double.infinity,
       child: TextFormField(
         controller: widget.controller,
         initialValue: widget.value,
@@ -100,11 +100,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
               : widget.suffixWidget,
           prefixIcon: widget.prefixIcon,
           hintText: widget.hint,
-          hintStyle: TextStyle(fontSize: 15, color: Colors.grey),
+          hintStyle: const TextStyle(fontSize: 15, color: Colors.grey),
           counterText: "",
-          border: OutlineInputBorder(),
-          // suffix: isPass widget.suffixWidget,
-          // contentPadding: const EdgeInsets.only(top: 5,left: 5, right: 5),
+          border: const OutlineInputBorder(),
           disabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20),
 
@@ -127,16 +125,28 @@ class _CustomTextFieldState extends State<CustomTextField> {
               width: 1,
             ),
           ),
-          errorStyle: const TextStyle(color: Colors.red, fontWeight: FontWeight.w400,),
+
+
+          errorStyle: const TextStyle(color: Colors.red, fontWeight: FontWeight.w400, height: 6, ),
           errorMaxLines: 1,
-          // errorBorder: OutlineInputBorder(
-          //   borderRadius: BorderRadius.circular(20),
-          //   borderSide: const BorderSide(
-          //     color: Colors.red,
-          //     width: 1,
-          //   ),
-          //
-          // ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+            borderSide: const BorderSide(
+              color: Colors.red,
+              width: 1,
+
+            ),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+            borderSide: const BorderSide(
+              color: Colors.red,
+              width: 1,
+
+            ),
+          ),
+
+
         ),
       ),
     );

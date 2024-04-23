@@ -106,7 +106,7 @@ class LoginView extends StatelessWidget {
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: theme.primaryColor,
-                    padding: EdgeInsets.symmetric(vertical: 10),
+                    padding: const EdgeInsets.symmetric(vertical: 10),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),

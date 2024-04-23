@@ -4,6 +4,22 @@ class ApplicationThemeManager {
   static const Color primaryColor = Color(0xff6f4f38);
   static ThemeData lightTheme = ThemeData(
     primaryColor: primaryColor,
+    appBarTheme: const AppBarTheme(
+      toolbarHeight: 100,
+      centerTitle: true,
+      iconTheme: IconThemeData(
+        color: Colors.black,
+        size: 24,
+      ),
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      titleTextStyle: TextStyle(
+        color: Colors.black,
+        fontFamily: "Poppins",
+        fontSize: 22,
+        fontWeight: FontWeight.bold
+      ),
+    ),
     textTheme: const TextTheme(
       titleLarge: TextStyle(
         fontFamily: "Poppins",
