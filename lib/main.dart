@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project_fitting_app/features/categorise/pages/jewelry.dart';
 import 'package:graduation_project_fitting_app/features/categorise/pages/men_category.dart';
 import 'package:graduation_project_fitting_app/features/categorise/pages/shoes_category.dart';
-import 'package:graduation_project_fitting_app/features/product/pages/product_view.dart';
+import 'package:graduation_project_fitting_app/features/product_details/pages/product_details_view.dart';
 import 'package:graduation_project_fitting_app/features/settings/pages/about_view.dart';
 import 'package:graduation_project_fitting_app/features/settings/pages/edit_profile_screen.dart';
 import 'package:graduation_project_fitting_app/features/settings/pages/help_support_sctreen.dart';
@@ -45,7 +45,6 @@ class MyApp extends StatelessWidget {
         LayoutView.routeName: (context) => const LayoutView(),
         LoginView.routeName: (context) => LoginView(),
         RegisterView.routeName: (context) => RegisterView(),
-        ProductView.routeName: (context) => const ProductView(),
         MenCategory.routeName: (context) =>  const MenCategory(),
         WomenCategory.routeName: (context) =>  const WomenCategory(),
         ShoesCategory.routeName: (context) =>  const ShoesCategory(),
@@ -54,6 +53,7 @@ class MyApp extends StatelessWidget {
         HelpSupportScreen.routeName: (context) =>  const HelpSupportScreen(),
         AboutView.routeName: (context) =>  const AboutView(),
         ReportProblemView.routeName: (context) =>  const ReportProblemView(),
+        ProductDetailsView.routeName: (context) =>  const ProductDetailsView(),
 
       },
     );

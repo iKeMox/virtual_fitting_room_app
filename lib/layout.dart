@@ -42,7 +42,7 @@ class _LayoutViewState extends State<LayoutView> {
             tabs: [
               GButton(icon: Iconsax.home, text: "Home", textStyle: theme.textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w400, fontSize: 15,color: Colors.white),),
               GButton(icon: Iconsax.user, text: "Fitting Room",textStyle: theme.textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w400, fontSize: 15,color: Colors.white),),
-              GButton(icon: Iconsax.heart, text: "Favourite",textStyle: theme.textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w400, fontSize: 15,color: Colors.white),),
+              GButton(icon: Iconsax.heart, text: "Wardrobe",textStyle: theme.textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w400, fontSize: 15,color: Colors.white),),
               GButton(icon: Iconsax.setting, text: "Settings",textStyle: theme.textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w400, fontSize: 15,color: Colors.white),),
             ],
           ),

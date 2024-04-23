@@ -16,7 +16,15 @@ class _MenCategoryState extends State<MenCategory> {
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text("Men Category"),
+        leading: GestureDetector(
+          child: const Icon( Icons.arrow_back_ios, color: Colors.black,  ),
+          onTap: () {
+            Navigator.pop(context);
+          } ,
+        ) ,
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: SizedBox(
@@ -24,6 +32,7 @@ class _MenCategoryState extends State<MenCategory> {
           child: SingleChildScrollView(
             child: Column(
               children: [
+
                 SizedBox(
                   height: mediaQuery.height,
                   child: GridView.builder(

@@ -32,7 +32,7 @@ class _FavouriteViewState extends State<FavouriteView> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Favourites",
+                              "Wardrobe",
                               style: theme.textTheme.titleLarge?.copyWith(fontSize: 26),
                             ),
                           ],

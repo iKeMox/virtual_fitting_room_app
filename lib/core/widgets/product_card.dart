@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project_fitting_app/features/product/pages/product_view.dart';
+import 'package:graduation_project_fitting_app/features/product_details/pages/product_details_view.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:like_button/like_button.dart';
 
@@ -16,7 +16,7 @@ class _ProductCardState extends State<ProductCard> {
     var theme = Theme.of(context);
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, ProductView.routeName);
+        Navigator.pushNamed(context, ProductDetailsView.routeName);
       },
       child: Card(
         elevation: 8,
