@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project_fitting_app/core/widgets/product_card.dart';
 import 'package:graduation_project_fitting_app/features/categorise/pages/men_category.dart';
 import 'package:graduation_project_fitting_app/features/categorise/pages/shoes_category.dart';
+import 'package:graduation_project_fitting_app/features/chat_bot/pages/chat_bot_view.dart';
 import 'package:graduation_project_fitting_app/features/home/widgets/categories_widget.dart';
+import 'package:graduation_project_fitting_app/features/product_details/pages/product_details_view.dart';
 import 'package:graduation_project_fitting_app/models/categories_model.dart';
 import '../../categorise/pages/jewelry.dart';
 import '../../categorise/pages/women_category.dart';
@@ -71,6 +73,29 @@ class _HomeViewState extends State<HomeView> {
                           ],
                         ),
                         Positioned(
+                          top: 35,
+                          right: 60,
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.pushNamed(context, ChatBotView.routeName);
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 4),
+                              height: 35,
+                              decoration: BoxDecoration(
+                                color: Colors.grey.shade200,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Row(
+                                children: [
+                                  Image.asset("assets/icons/chat_bot.png", scale: 0.04,),
+                                  Text(" Can I help?", style: theme.textTheme.bodySmall?.copyWith(fontSize: 13),)
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
                           right: 0,
                           child: AnimSearchBar(
                             width: 320,
@@ -99,7 +124,9 @@ class _HomeViewState extends State<HomeView> {
 
                 ),
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, ProductDetailsView.routeName);
+                  },
                   child: Container(
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project_fitting_app/features/categorise/pages/jewelry.dart';
 import 'package:graduation_project_fitting_app/features/categorise/pages/men_category.dart';
 import 'package:graduation_project_fitting_app/features/categorise/pages/shoes_category.dart';
+import 'package:graduation_project_fitting_app/features/chat_bot/pages/chat_bot_view.dart';
 import 'package:graduation_project_fitting_app/features/product_details/pages/product_details_view.dart';
 import 'package:graduation_project_fitting_app/features/settings/pages/about_view.dart';
 import 'package:graduation_project_fitting_app/features/settings/pages/edit_profile_screen.dart';
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
         AboutView.routeName: (context) =>  const AboutView(),
         ReportProblemView.routeName: (context) =>  const ReportProblemView(),
         ProductDetailsView.routeName: (context) =>  const ProductDetailsView(),
+        ChatBotView.routeName: (context) =>  const ChatBotView(),
 
       },
     );
