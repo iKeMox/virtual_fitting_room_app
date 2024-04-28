@@ -5,10 +5,7 @@ import 'package:graduation_project_fitting_app/features/categorise/pages/men_cat
 import 'package:graduation_project_fitting_app/features/categorise/pages/shoes_category.dart';
 import 'package:graduation_project_fitting_app/features/chat_bot/pages/chat_bot_view.dart';
 import 'package:graduation_project_fitting_app/features/product_details/pages/product_details_view.dart';
-import 'package:graduation_project_fitting_app/features/settings/pages/about_view.dart';
 import 'package:graduation_project_fitting_app/features/settings/pages/edit_profile_screen.dart';
-import 'package:graduation_project_fitting_app/features/settings/pages/help_support_sctreen.dart';
-import 'package:graduation_project_fitting_app/features/settings/pages/rebport_problem_view.dart';
 import 'package:graduation_project_fitting_app/settings_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -51,9 +48,6 @@ class MyApp extends StatelessWidget {
         ShoesCategory.routeName: (context) =>  const ShoesCategory(),
         JewelryCategory.routeName: (context) =>  const JewelryCategory(),
         EditProfileScreen.routeName: (context) =>  EditProfileScreen(),
-        HelpSupportScreen.routeName: (context) =>  const HelpSupportScreen(),
-        AboutView.routeName: (context) =>  const AboutView(),
-        ReportProblemView.routeName: (context) =>  const ReportProblemView(),
         ProductDetailsView.routeName: (context) =>  const ProductDetailsView(),
         ChatBotView.routeName: (context) =>  const ChatBotView(),
 

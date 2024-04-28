@@ -1,11 +1,8 @@
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_project_fitting_app/features/settings/pages/edit_profile_screen.dart';
-import 'package:graduation_project_fitting_app/features/settings/pages/help_support_sctreen.dart';
-import 'package:graduation_project_fitting_app/features/settings/pages/rebport_problem_view.dart';
 import 'package:iconsax/iconsax.dart';
 
-import 'about_view.dart';
 
 class SettingsView extends StatefulWidget {
   const SettingsView({super.key});
@@ -75,69 +72,6 @@ class _SettingsViewState extends State<SettingsView> {
             Row(
               children: [
                 Text(
-                  "Support & About",
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    fontSize: 16,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 6),
-            Container(
-              width: mediaQuery.width,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade200,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Column(
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, HelpSupportScreen.routeName);
-                    },
-                    child: Row(
-                      children: [
-                        Icon(
-                          Iconsax.support,
-                          color: Colors.grey.shade800,
-                          size: 30,
-                        ),
-                        const SizedBox(width: 10),
-                        Text(
-                          "Help & Support",
-                          style: theme.textTheme.bodySmall?.copyWith(
-                              fontSize: 18, color: Colors.grey.shade800),
-                        ),
-                      ],
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, AboutView.routeName);
-                    },
-                    child: Row(
-                      children: [
-                        Icon(
-                          Iconsax.info_circle,
-                          color: Colors.grey.shade800,
-                          size: 30,
-                        ),
-                        const SizedBox(width: 10),
-                        Text(
-                          "About",
-                          style: theme.textTheme.bodySmall?.copyWith(
-                              fontSize: 18, color: Colors.grey.shade800),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
-            Row(
-              children: [
-                Text(
                   "Theme",
                   style: theme.textTheme.bodySmall?.copyWith(
                     fontSize: 16,
@@ -172,7 +106,7 @@ class _SettingsViewState extends State<SettingsView> {
             Row(
               children: [
                 Text(
-                  "Support & About",
+                  "Logout",
                   style: theme.textTheme.bodySmall?.copyWith(
                     fontSize: 16,
                   ),
@@ -189,26 +123,6 @@ class _SettingsViewState extends State<SettingsView> {
               ),
               child: Column(
                 children: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, ReportProblemView.routeName);
-                    },
-                    child: Row(
-                      children: [
-                        Icon(
-                          Iconsax.flag,
-                          color: Colors.grey.shade800,
-                          size: 30,
-                        ),
-                        const SizedBox(width: 10),
-                        Text(
-                          "Report a problem",
-                          style: theme.textTheme.bodySmall?.copyWith(
-                              fontSize: 18, color: Colors.grey.shade800),
-                        ),
-                      ],
-                    ),
-                  ),
                   TextButton(
                     onPressed: () {},
                     child: Row(

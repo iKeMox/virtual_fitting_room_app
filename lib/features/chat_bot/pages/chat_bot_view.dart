@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project_fitting_app/core/widgets/custom_text_field.dart';
 import 'package:iconsax/iconsax.dart';
 
 class ChatBotView extends StatelessWidget {
@@ -16,7 +15,7 @@ class ChatBotView extends StatelessWidget {
         children: [
           Container(
             margin: EdgeInsets.only(top: mediaQuery.height * 0.04),
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             width: double.infinity,
             height: 80,
             decoration: BoxDecoration(
@@ -54,25 +53,21 @@ class ChatBotView extends StatelessWidget {
               ],
             ),
           ),
-          Spacer(),
+          const Spacer(),
           Container(
             margin: EdgeInsets.only(top: mediaQuery.height * 0.04),
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             width: double.infinity,
             height: 80,
             decoration: BoxDecoration(
               color: Colors.grey.shade300,
-              // borderRadius: const BorderRadius.only(
-              //   topLeft: Radius.circular(20),
-              //   topRight: Radius.circular(20),
-              // ),
             ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Container(
+                  child: SizedBox(
                     width: mediaQuery.width*0.9,
                     height: 35,
                     child: TextField(
@@ -81,7 +76,7 @@ class ChatBotView extends StatelessWidget {
                         hintText: "Type your message here",
                         suffixIcon: IconButton(
                             onPressed: () {},
-                            icon:Icon(Iconsax.send_14),
+                            icon:const Icon(Iconsax.send_14),
                         ),
                         
                       ),
