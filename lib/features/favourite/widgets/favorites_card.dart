@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:like_button/like_button.dart';
-
+import 'package:graduation_project_fitting_app/models/favorite_model.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 class FavoritesCard extends StatefulWidget {
-  const FavoritesCard({super.key});
+  final FavoriteProduct favoriteProduct;
+  final Function onDelete; // Define a callback function
+
+  const FavoritesCard({Key? key, required this.favoriteProduct, required this.onDelete}) : super(key: key);
 
   @override
   State<FavoritesCard> createState() => _FavoritesCardState();
@@ -23,23 +26,47 @@ class _FavoritesCardState extends State<FavoritesCard> {
           motion: const DrawerMotion(),
           children: [
             SlidableAction(
-              onPressed: (context) {},
+              onPressed: (context) async {
+                var token = await SharedPreferences.getInstance().then((value) => value.getString('token'));
+
+                if (token == null) {
+                  return;
+                }
+                var url = Uri.parse(
+                    'http://192.168.1.13:8000/api/delete-favorite-products/${widget.favoriteProduct.product.id}');
+                var response = await http.post(url, headers: {
+                  "Authorization": "Bearer $token",
+                });
+                if (response.statusCode == 200) {
+                  // Call the onDelete callback function
+                  widget.onDelete(); // Notify the parent widget
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Product removed from favorites'),
+                    ),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Failed to remove product from favorites'),
+                    ),
+                  );
+                }
+              },
               backgroundColor: const Color(0xFFFE4A49),
               foregroundColor: Colors.white,
               borderRadius: BorderRadius.circular(10),
               icon: Icons.delete,
               label: 'Delete',
               padding: EdgeInsets.zero,
-
             ),
           ],
         ),
         child: Container(
           decoration: BoxDecoration(
-              color: Colors.grey.shade200,
-              borderRadius: BorderRadius.circular(10)),
+              color: Colors.grey.shade200, borderRadius: BorderRadius.circular(10)),
           width: mediaQuery.width,
-          height: 120,
+          height: 120, // Fixed height for the card
           child: Row(
             children: [
               SizedBox(
@@ -47,62 +74,42 @@ class _FavoritesCardState extends State<FavoritesCard> {
                 width: 120,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
-                  child: Image.asset(
-                    'assets/images/men_cat.jpg',
+                  child: Image.network(
+                    widget.favoriteProduct.product.image,
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.only(left: 10),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(
-                      width: 200,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text('SHIRT'),
-                            LikeButton(
-                              size: 23,
-                              animationDuration:
-                              const Duration(milliseconds: 500),
-                              likeBuilder: (isLiked) {
-                                if (isLiked) {
-                                  return const Icon(
-                                    Iconsax.heart5,
-                                    size: 24,
-                                    color: Colors.white,
-                                  );
-                                }
-                                if (!isLiked) {
-                                  return const Icon(
-                                    Iconsax.heart5,
-                                    size: 24,
-                                    color: Colors.red,
-                                  );
-                                }
-                              },
-                            ),
-                          ],
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: SizedBox(
+                        width: mediaQuery.width - 170, // Adjusted width
+                        child: Text(
+                          widget.favoriteProduct.product.name,
+                          style: theme.textTheme.headline6,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                     ),
                     Container(
-                      margin: const EdgeInsets.only(left: 30, bottom: 10),
+                      margin: const EdgeInsets.only(bottom: 10),
                       width: 150,
                       height: 35,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(18),
-                          color: Colors.black),
+                          borderRadius: BorderRadius.circular(18), color: Colors.black),
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          // Handle button press
+                        },
                         child: Text(
                           'Try it',
-                          style: theme.textTheme.bodyMedium?.copyWith(
+                          style: theme.textTheme.bodyText1?.copyWith(
                               color: Colors.white,
                               fontSize: 14,
                               fontWeight: FontWeight.w400),
@@ -119,3 +126,4 @@ class _FavoritesCardState extends State<FavoritesCard> {
     );
   }
 }
+

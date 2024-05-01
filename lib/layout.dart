@@ -5,7 +5,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:graduation_project_fitting_app/settings_provider.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 class LayoutView extends StatefulWidget {
   static const String routeName = "layout";
   const LayoutView({super.key});
@@ -19,6 +19,11 @@ class _LayoutViewState extends State<LayoutView> {
   Widget build(BuildContext context) {
     var vm = Provider.of<SettingsProvider>(context);
     var theme = Theme.of(context);
+    SharedPreferences.getInstance().then((value) {
+      if (value.getString("token") == null) {
+        Navigator.pushNamed(context, 'login');
+      }
+    });
     return Scaffold(
       backgroundColor: Colors.white,
 

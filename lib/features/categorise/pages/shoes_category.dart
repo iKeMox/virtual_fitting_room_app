@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project_fitting_app/models/product_model.dart';
 
-import '../../../core/widgets/product_card.dart';
-
+import '../../../core/widgets/product_card_d.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 class ShoesCategory extends StatefulWidget {
   static const String routeName = "shoes";
   const ShoesCategory({super.key});
@@ -11,6 +14,25 @@ class ShoesCategory extends StatefulWidget {
 }
 
 class _ShoesCategoryState extends State<ShoesCategory> {
+  List<Product> products = [];
+
+  Future<List<Product>> getAllProducts() async {
+    // get token from shared preferences
+
+    var token = await SharedPreferences.getInstance().then((value) => value.getString('token'));
+    var category_id = '3';
+    final response = await http.get(Uri.parse('http://192.168.1.13:8000/api/get-product-by-categoryId/$category_id'), headers: {
+      'Authorization': 'Bearer ' + token!,
+
+    });
+
+    if (response.statusCode == 200) {
+      List jsonResponse = json.decode(response.body)['data'];
+      return jsonResponse.map((item) => Product.fromJson(item)).toList();
+    } else {
+      throw Exception('Failed to load products');
+    }
+  }
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
@@ -31,22 +53,29 @@ class _ShoesCategoryState extends State<ShoesCategory> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-
-                SizedBox(
-                  height: mediaQuery.height,
-                  child: GridView.builder(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                      childAspectRatio: 1,
-                    ),
-                    // scrollDirection: Axis.vertical,
-                    itemCount: 10,
-                    itemBuilder: (context, index){
-                      return const ProductCard();
-                    },
-                  ),
+                FutureBuilder<List<Product>>(
+                  future: getAllProducts(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return GridView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: 0.7,
+                        ),
+                        itemCount: snapshot.data!.length,
+                        itemBuilder: (context, index) {
+                          return ProductCard(
+                            product: snapshot.data![index],
+                          );
+                        },
+                      );
+                    } else if (snapshot.hasError) {
+                      return Text('${snapshot.error}');
+                    }
+                    return const Center(child: CircularProgressIndicator());
+                  },
                 ),
               ],
             ),

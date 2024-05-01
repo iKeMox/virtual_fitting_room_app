@@ -7,7 +7,9 @@ import '../../../core/widgets/custom_text_field.dart';
 import '../../../layout.dart';
 import '../../../settings_provider.dart';
 import '../../register/pages/register_view.dart';
-
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 class LoginView extends StatelessWidget {
   static const String routeName = "login";
   var formKey = GlobalKey<FormState>();
@@ -103,8 +105,53 @@ class LoginView extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      if (formKey.currentState!.validate()) {}
-                       Navigator.pushReplacementNamed(context, LayoutView.routeName);
+                      if (formKey.currentState!.validate()) {
+
+
+                        var url = Uri.parse('http://192.168.1.13:8000/api/login');
+                        http.post(url, body: {
+                          'email': emailController.text,
+                          'password': passwordController.text,
+                        }).then((response) {
+
+                          if (response.statusCode == 200) {
+                            // response to get token
+                            // save token in shared preferences
+                            var token = jsonDecode(response.body)['data']['token'];
+                            SharedPreferences.getInstance().then((prefs) {
+                              prefs.setString('token', token);
+                            });
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('Login Successfully'),
+                                duration: const Duration(seconds: 5),
+                                action: SnackBarAction(
+                                  label: 'Close',
+                                  onPressed: () {
+                                    // Some code to undo the change.
+                                  },
+                                ),
+                              ),
+                            );
+
+                            Navigator.pushReplacementNamed(context, LayoutView.routeName);
+                          } else {
+                            final snackBar = SnackBar(
+                              content: Text('Invalid email or password'),
+                              duration: const Duration(seconds: 5),
+                              action: SnackBarAction(
+                                label: 'Close',
+                                onPressed: () {
+                                  // Some code to undo the change.
+                                },
+                              ),
+                            );
+                            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                          }
+                        });
+
+                      }
+
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: theme.primaryColor,

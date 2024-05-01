@@ -2,7 +2,7 @@ import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_project_fitting_app/features/settings/pages/edit_profile_screen.dart';
 import 'package:iconsax/iconsax.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsView extends StatefulWidget {
   const SettingsView({super.key});
@@ -124,7 +124,16 @@ class _SettingsViewState extends State<SettingsView> {
               child: Column(
                 children: [
                   TextButton(
-                    onPressed: () {},
+
+                    onPressed: () async {
+                      print("logout");
+                      SharedPreferences prefs = await SharedPreferences.getInstance();
+                      prefs.clear();
+
+                      Navigator.pushReplacementNamed(context, 'login');
+
+
+                    },
                     child: Row(
                       children: [
                         const Icon(

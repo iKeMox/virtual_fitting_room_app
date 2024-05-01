@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import '../../../core/widgets/custom_text_field.dart';
 import '../../../settings_provider.dart';
 import '../../login/pages/login_view.dart';
-
+import 'package:http/http.dart' as http;
 class RegisterView extends StatelessWidget {
   static const String routeName = "register";
   var formKey = GlobalKey<FormState>();
@@ -163,7 +163,22 @@ class RegisterView extends StatelessWidget {
                   const SizedBox(height: 25),
                   ElevatedButton(
                     onPressed: () {
-                      if (formKey.currentState!.validate()) {}
+
+                      if (formKey.currentState!.validate()) {
+                        var url = Uri.parse('http://192.168.1.13:8000/api/register');
+                        http.post(url, body: {
+                          "name": nameController.text,
+                          "email": emailController.text,
+                          "password": passwordController.text,
+                          "password_confirmation": passwordController.text,
+                        }).then((response) {
+                          if (response.statusCode == 200) {
+                            Navigator.pushReplacementNamed(context, LoginView.routeName);
+                          }
+                        });
+                      }
+
+
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: theme.primaryColor,
